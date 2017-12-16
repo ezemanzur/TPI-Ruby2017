@@ -1,10 +1,11 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_course
 
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students= @course.students
   end
 
   # GET /students/1
@@ -14,7 +15,7 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
-    @student = Student.new
+    @student = @course.students.new
   end
 
   # GET /students/1/edit
@@ -24,11 +25,11 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
-    @student = Student.new(student_params)
+    @student = @course.students.new(student_params)
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.html { redirect_to course_student_path(@course,@student), notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new }
@@ -66,7 +67,9 @@ class StudentsController < ApplicationController
     def set_student
       @student = Student.find(params[:id])
     end
-
+    def set_course
+        @course = Course.find(params[:course_id])
+      end
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:name, :lastname, :dni, :number, :course_id)

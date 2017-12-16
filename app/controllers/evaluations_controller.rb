@@ -1,10 +1,10 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_course
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = @course.evaluations
   end
 
   # GET /evaluations/1
@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/new
   def new
-    @evaluation = Evaluation.new
+    @evaluation = @course.evaluations.new
   end
 
   # GET /evaluations/1/edit
@@ -24,11 +24,12 @@ class EvaluationsController < ApplicationController
   # POST /evaluations
   # POST /evaluations.json
   def create
-    @evaluation = Evaluation.new(evaluation_params)
-
+   
+     
+    @evaluation = @course.evaluations.create(evaluation_params)
     respond_to do |format|
-      if @evaluation.save
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
+      if @evaluation
+        format.html { redirect_to  course_evaluation_path(@course,@evaluation) , notice: 'Evaluation was successfully created.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class EvaluationsController < ApplicationController
   def update
     respond_to do |format|
       if @evaluation.update(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to course_evaluation_path(@course,@evaluation), notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -56,15 +57,21 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to course_evaluations_path(@course), notice: 'Evaluation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def set_grades
+     @evaluation = Evaluation.find(params[:id])
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
       @evaluation = Evaluation.find(params[:id])
+    end
+    def set_course
+      @course = Course.find(params[:course_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

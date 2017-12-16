@@ -20,10 +20,7 @@
   <%= @student.number %>
 </p>
 
-<p>
-  <strong>Course:</strong>
-  <%= @student.course %>
-</p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+
+<%= link_to 'Edit', edit_course_student_path(@course,@student) %> |
+<%= link_to 'Back', course_students_path(@course) %>

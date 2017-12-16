@@ -1,10 +1,11 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_evaluation
+  before_action :set_students
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    @grades = @evaluation.grades
   end
 
   # GET /grades/1
@@ -14,7 +15,7 @@ class GradesController < ApplicationController
 
   # GET /grades/new
   def new
-    @grade = Grade.new
+    @grade = @evaluation.grades.new
   end
 
   # GET /grades/1/edit
@@ -24,12 +25,12 @@ class GradesController < ApplicationController
   # POST /grades
   # POST /grades.json
   def create
-    @grade = Grade.new(grade_params)
-
+    @grade = @evaluation.grades.new(grade_params)
+    @student = 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
-        format.json { render :show, status: :created, location: @grade }
+        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'Grade was successfully created.' }
+        format.json { render :show, status: :created, location: [@evaluation.course,@evaluation,@grade] }
       else
         format.html { render :new }
         format.json { render json: @grade.errors, status: :unprocessable_entity }
@@ -42,8 +43,8 @@ class GradesController < ApplicationController
   def update
     respond_to do |format|
       if @grade.update(grade_params)
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
-        format.json { render :show, status: :ok, location: @grade }
+        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'Grade was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@evaluation.course,@evaluation,@grade]}
       else
         format.html { render :edit }
         format.json { render json: @grade.errors, status: :unprocessable_entity }
@@ -56,7 +57,7 @@ class GradesController < ApplicationController
   def destroy
     @grade.destroy
     respond_to do |format|
-      format.html { redirect_to grades_url, notice: 'Grade was successfully destroyed.' }
+      format.html { redirect_to [@evaluation.course,@evaluation], notice: 'Grade was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,7 +67,12 @@ class GradesController < ApplicationController
     def set_grade
       @grade = Grade.find(params[:id])
     end
-
+    def set_evaluation
+      @evaluation = Evaluation.find(params[:evaluation_id])
+    end
+    def set_students
+      @students = @evaluation.course.students
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def grade_params
       params.require(:grade).permit(:grade, :student_id, :evaluation_id)

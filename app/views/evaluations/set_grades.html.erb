@@ -1,0 +1,7 @@
+<%= form_for [@course,@evaluation] do |evaluation_form| %>
+  ...
+  <%= evaluation_form.fields_for :grades, @evaluation.grades do |grade_fields| %>
+    Grade: <%= grade_fields.text_field :grade %>
+  <% end %>
+  ...
+<% end %>

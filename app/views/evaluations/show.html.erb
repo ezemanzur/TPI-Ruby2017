@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Title:</strong>
@@ -20,5 +20,7 @@
   <%= @evaluation.course %>
 </p>
 
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+<%= link_to 'Edit', edit_course_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', course_evaluations_path %>
+<%= link_to 'notas', course_evaluation_grades_path(@course,@evaluation) %>
+<%= link_to 'set_grade', set_grades_course_evaluation_path(@course,@evaluation) %>

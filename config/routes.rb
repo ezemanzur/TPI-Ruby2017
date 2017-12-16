@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
  
-  resources :grades
-  resources :evaluations
-  resources :students
-  resources :courses
+  
+  resources :courses do
+  	resources :students
+  	resources :evaluations do  
+  		resources :grades
+      member do
+        get 'set_grades'
+      end
+  	end
+  end
   get 'home/index'
   root 'courses#index'
   devise_for :users, :only => [ :sessions]
