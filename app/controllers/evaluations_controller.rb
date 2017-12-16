@@ -63,6 +63,7 @@ class EvaluationsController < ApplicationController
   end
   def set_grades
      @evaluation = Evaluation.find(params[:id])
+     @evaluation.grades.build
   end
 
   private
