@@ -1,0 +1,27 @@
+<%= form_for [@course,@evaluation] do |f| %>
+  <h3 style="color: white; text-align: center">Grades</h3>
+  <table  class="table table-bordered table-light gradesTable offset-md-3">
+    <tr>
+      <th class="col-md-2">Student</th>
+      <th class="col-md-2">Dni</th>
+      <th class="col-md-2">Grade</th>
+    </tr>
+    <%= f.fields_for :grades do |grades_form| %>
+    <tr>
+      <td >      
+        <%= grades_form.object.student.name %>
+      </td>
+       <td >      
+        <%= grades_form.object.student.dni %>
+      </td>
+      <td>
+          <%= grades_form.text_field :grade  %>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+  <div class="action offset-md-5">
+  <%= f.submit value:"Update grades" ,class:"btn btn-danger" %>
+  </div>
+<% end %>

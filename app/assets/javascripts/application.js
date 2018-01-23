@@ -16,3 +16,16 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+
+function showmydiv() {
+document.getElementById('myBox').style.display = "";
+document.getElementById('actualizarNotas').style.display = "none";
+document.getElementById('ocultarNotas').style.display = "";
+
+}
+function hidemydiv() {
+document.getElementById('myBox').style.display = "none";
+document.getElementById('actualizarNotas').style.display = "";
+document.getElementById('ocultarNotas').style.display = "none";
+
+}

@@ -1,6 +1,7 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
   before_action :set_course
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :set_grades, only: [:show]
   # GET /evaluations
   # GET /evaluations.json
   def index
@@ -15,6 +16,9 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   def new
     @evaluation = @course.evaluations.new
+    @course.students.each do |student| 
+          @evaluation.grades.build(:student=> student)       
+    end
   end
 
   # GET /evaluations/1/edit
@@ -26,10 +30,10 @@ class EvaluationsController < ApplicationController
   def create
    
      
-    @evaluation = @course.evaluations.create(evaluation_params)
+    @evaluation = @course.evaluations.new(evaluation_params)
     respond_to do |format|
-      if @evaluation
-        format.html { redirect_to  course_evaluation_path(@course,@evaluation) , notice: 'Evaluation was successfully created.' }
+      if @evaluation.save
+        format.html { redirect_to  course_evaluation_path(@course,@evaluation) , notice: 'La evaluación fue creada con éxito.' }
         format.json { render :show, status: :created, location: @evaluation }
       else
         format.html { render :new }
@@ -42,8 +46,8 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
-      if @evaluation.update(evaluation_params)
-        format.html { redirect_to course_evaluation_path(@course,@evaluation), notice: 'Evaluation was successfully updated.' }
+      if @evaluation.update_attributes(evaluation_params)
+        format.html { redirect_to course_evaluation_path(@course,@evaluation), notice: 'La evaluación fue actualizada con éxito.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -57,26 +61,27 @@ class EvaluationsController < ApplicationController
   def destroy
     @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to course_evaluations_path(@course), notice: 'Evaluation was successfully destroyed.' }
+      format.html { redirect_to course_evaluations_path(@course), notice: 'La evaluación fue eliminada con éxito.' }
       format.json { head :no_content }
     end
   end
-  def set_grades
-     @evaluation = Evaluation.find(params[:id])
-     @evaluation.grades.build
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluation
-      @evaluation = Evaluation.find(params[:id])
+      @evaluation = @course.evaluations.find(params[:id])
+     # @evaluation = Evaluation.find(params[:id])
     end
     def set_course
       @course = Course.find(params[:course_id])
     end
+    def set_grades
+      @course.students.each {|a| @evaluation.grades.find_or_create_by(student_id:a.id,evaluation_id:@evaluation.id)}
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluation_params
-      params.require(:evaluation).permit(:title, :min_grade, :date, :course_id)
+      params.require(:evaluation).permit(:title, :min_grade, :date, :course_id, grades_attributes: [:id, :grade,:student,:evaluation, :_destroy])
     end
 end

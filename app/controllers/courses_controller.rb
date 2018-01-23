@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to @course, notice: 'El curso fue creado con éxito.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to @course, notice: 'El curso fue actualizado con éxito.' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -53,11 +53,14 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   # DELETE /courses/1.json
-  def destroy
-    @course.destroy
+  def destroy 
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-      format.json { head :no_content }
+      if @course.destroy
+        format.html { redirect_to courses_url, notice: 'El curso fue eliminado con éxito.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to courses_url, notice: 'El curso no puede ser elminado ya que posee evaluaciones.' }
+      end
     end
   end
 

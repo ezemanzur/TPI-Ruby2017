@@ -1,13 +1,3 @@
-<%= form_for [@course,@evaluation] do |evaluation_form| %>
 
-  <%= evaluation_form.fields_for :grades do |grade_fields| %>
-	   <% @course.students.each do |student| %>
-		   	Estudiante: <%= grade_fields.text_field :student, :value => student.name + " "+ student.lastname %>
-		    Grade: <%= grade_fields.text_field :grade %>
-		    <br>
-	    <% end %>
-  <% end %>
- <div class="actions">
-    <%= evaluation_form.submit %>
-  </div>
-<% end %>
+
+<%= render 'set_grades', evaluation: @evaluation %>

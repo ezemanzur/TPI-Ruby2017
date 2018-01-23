@@ -1,7 +1,7 @@
 class GradesController < ApplicationController
-  before_action :set_grade, only: [:show, :edit, :update, :destroy]
   before_action :set_evaluation
   before_action :set_students
+  before_action :set_grade, only: [:show, :edit, :update, :destroy]
   # GET /grades
   # GET /grades.json
   def index
@@ -26,10 +26,9 @@ class GradesController < ApplicationController
   # POST /grades.json
   def create
     @grade = @evaluation.grades.new(grade_params)
-    @student = 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'Grade was successfully created.' }
+        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'La nota ha sido cargada con éxito.' }
         format.json { render :show, status: :created, location: [@evaluation.course,@evaluation,@grade] }
       else
         format.html { render :new }
@@ -43,7 +42,7 @@ class GradesController < ApplicationController
   def update
     respond_to do |format|
       if @grade.update(grade_params)
-        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'Grade was successfully updated.' }
+        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'La nota ha sido actualizada con éxito.' }
         format.json { render :show, status: :ok, location: [@evaluation.course,@evaluation,@grade]}
       else
         format.html { render :edit }
@@ -57,7 +56,7 @@ class GradesController < ApplicationController
   def destroy
     @grade.destroy
     respond_to do |format|
-      format.html { redirect_to [@evaluation.course,@evaluation], notice: 'Grade was successfully destroyed.' }
+      format.html { redirect_to [@evaluation.course,@evaluation], notice: 'La nota ha sido eliminada con éxito.' }
       format.json { head :no_content }
     end
   end
