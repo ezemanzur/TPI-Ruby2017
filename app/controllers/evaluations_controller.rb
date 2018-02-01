@@ -59,10 +59,14 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1
   # DELETE /evaluations/1.json
   def destroy
-    @evaluation.destroy
     respond_to do |format|
-      format.html { redirect_to course_evaluations_path(@course), notice: 'La evaluación fue eliminada con éxito.' }
-      format.json { head :no_content }
+      if @evaluation.destroy
+        format.html { redirect_to course_evaluations_path(@course), notice: 'La evaluación fue eliminada con éxito.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+      end
     end
   end
   

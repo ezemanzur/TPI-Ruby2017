@@ -8,6 +8,17 @@
   </head>
 
   <body>
+    <head>
+      <nav class="col-md-12 nav-singout navbar-inverse" >
+        <small> <%= link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete %>
+        </small>
+      </nav>
+      <h1 class="titulo-curso offset-md-5">Cursos de Ruby </h1>
+      <%= link_to image_tag("logo.jpg", class:"img-logo"), "http://info.unlp.edu.ar"%>
+      <nav>
+        
+      </nav>
+    </head>
   	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
