@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @course.year %>
-</p>
+ <h1 class="title-courses"> <%= @course.name %> (<%= @course.year %>) </h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<div class="contaier" style="margin-top: 50px ">
+
+	<div class="offset-md-2 col-md-3 div-inline">
+		<h2>Evaluaciones</h2>
+		<%= link_to course_evaluations_path(@course) do%>
+			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
+		<% end %>
+	</div>
+	<div class="offset-md-1 col-md-3 div-inline">
+		<h2>Evaluaciones</h2>
+		<%= link_to course_evaluations_path(@course) do%>
+			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
+		<% end %>
+	</div>
+	<div class="offset-md-4 col-md-3 div-inline">
+		<h2>Evaluaciones</h2>
+		<%= link_to course_evaluations_path(@course) do%>
+			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
+		<% end %>
+		
+	</div>
+		
+	</div>
+
 
 
 <%= link_to 'Edit', edit_course_path(@course) %> |

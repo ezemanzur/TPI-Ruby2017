@@ -10,15 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
-
+ *= require font-awesome
+ *
  */
+ @import "font-awesome";
  @import "bootstrap";
 
- .img-logo{
- 	float: right;
- 	padding: 1%;
- }
+body{
+	font-family: "relaway";
+}
+h1{
+
+	font-weight: bold;
+	color: #a30712;
+}
+
+
  .titulo-curso{
  	display: inline-block;
  	padding: 1%;
@@ -27,7 +34,56 @@
  	text-align: right;
  	background: #727176;
  }
- .nav-singout a{
+ .nav-singout a,.nav-singout p{
  	color: #fff;
- 	padding: 1%;
  }
+ .img-header{
+ 	margin-top:1%;
+ }
+ .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.logo-ruby{
+	width: 30%;
+}
+
+.btn-form{
+	background: #727176;
+	border: #727176;
+}
+.btn-form:hover {
+	background: #a30712;
+}
+.title-courses, .col-center{
+	text-align: center;
+}
+table td, table td a
+{
+	color: #a30712;
+}
+table td a:hover{
+	color: #fff;
+	background: #a30712;
+}
+.div-inline{
+	display: inline-block;
+	background:#a30712;
+	text-align: center;
+	;
+	min-height: 300px;
+	margin-top: 20px;
+
+}
+.div-inline h2{
+	color: #fff;
+}
+.fa-graduation-cap{
+	font-size: 500%;
+	padding: auto;
+}
+.div-inline .fa-graduation-cap{
+	margin-bottom: auto !important;
+}

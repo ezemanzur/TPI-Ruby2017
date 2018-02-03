@@ -10,17 +10,27 @@
   <body>
     <head>
       <nav class="col-md-12 nav-singout navbar-inverse" >
-        <small> <%= link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete %>
-        </small>
+
+         <% if user_signed_in? %>
+          <%= link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete %>
+          
+          <% else %>
+            <p>Debes iniciar sesión para continuar</p>
+          <% end %>
+        
       </nav>
-      <h1 class="titulo-curso offset-md-5">Cursos de Ruby </h1>
-      <%= link_to image_tag("logo.jpg", class:"img-logo"), "http://info.unlp.edu.ar"%>
+      <%= link_to image_tag("logo.jpg", class:"offset-md-1 col-md-4 img-header offset-sm-2 col-sm-5"), "http://info.unlp.edu.ar"%>
+      
+      <%=  image_tag("logo-ruby.jpg", class: "offset-md-5 col-md-1 img-header logo-ruby")%>
+      
       <nav>
         
       </nav>
     </head>
-  	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  	<!--<p class="notice"></p> -->
+    <div class="container offset-md-1 col-md-10">
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>

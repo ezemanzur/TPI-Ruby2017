@@ -1,6 +1,7 @@
-<h1>Editing Course</h1>
-
+<h1 class="title-courses">Editar Cursada</h1>
+<div class="offset-md-5 col-md-4 form-signin ">
 <%= render 'form', course: @course %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Ver', @course, :class => "btn btn-primary btn-form" %> 
+<%= link_to 'Volver', courses_path, :class => "btn btn-primary btn-form" %>
+</div>
