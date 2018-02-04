@@ -72,18 +72,20 @@ table td a:hover{
 	display: inline-block;
 	background:#a30712;
 	text-align: center;
-	;
 	min-height: 300px;
 	margin-top: 20px;
 
 }
 .div-inline h2{
 	color: #fff;
+	margin-top: 35%;
 }
-.fa-graduation-cap{
+.fa-graduation-cap, .fa-sort-numeric-asc, .fa-users{
 	font-size: 500%;
 	padding: auto;
+	color: #fff;
 }
-.div-inline .fa-graduation-cap{
-	margin-bottom: auto !important;
+.div-inline:hover{
+	background: #727176;
+	text-decoration: none;
 }

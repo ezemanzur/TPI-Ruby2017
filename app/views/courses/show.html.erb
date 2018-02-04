@@ -4,31 +4,23 @@
 
 <div class="contaier" style="margin-top: 50px ">
 
-	<div class="offset-md-2 col-md-3 div-inline">
+	<a href="<%= course_evaluations_path(@course) %>" class="offset-md-2 col-md-3 div-inline">
 		<h2>Evaluaciones</h2>
-		<%= link_to course_evaluations_path(@course) do%>
-			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
-		<% end %>
-	</div>
-	<div class="offset-md-1 col-md-3 div-inline">
-		<h2>Evaluaciones</h2>
-		<%= link_to course_evaluations_path(@course) do%>
-			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
-		<% end %>
-	</div>
-	<div class="offset-md-4 col-md-3 div-inline">
-		<h2>Evaluaciones</h2>
-		<%= link_to course_evaluations_path(@course) do%>
-			<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
-		<% end %>
-		
-	</div>
+		<%= content_tag :i,"", :class => "fa fa-graduation-cap" %>
+	</a>
+	<a href="<%= course_students_path(@course) %>" class="offset-md-1 col-md-3 div-inline">
+		<h2>Estudiantes</h2>
+		<%= content_tag :i,"", :class => "fa  fa-users" %>
+	</a>
+	<a href="<%= course_evaluations_path(@course) %>" class="offset-md-4 col-md-3 div-inline">
+		<h2>Notas</h2>
+		<%= content_tag :i,"", :class => "fa fa-sort-numeric-asc" %>
+	</a>
 		
 	</div>
 
 
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %> |
-<%= link_to 'Evaluaciones', course_evaluations_path(@course) %> |
-<%= link_to 'Estudiantes', course_students_path(@course) %>
+<%= link_to 'Editar Cursada', edit_course_path(@course) , :class => "btn btn-primary btn-form" %> 
+<%= link_to 'Volver ', courses_path , :class => "btn btn-primary btn-form" %> 
+
