@@ -1,37 +1,45 @@
 
+<div class="container  div-inline2">
+  <table class="table table-bordered table-light gradesTable table-striped">
+    <tr>
+      <th>Titulo</th>
+      <th>Nota minima</th>
+      <th>Fecha</th>
+      <th>Aprobados</th>
+      <th>Desaprobados</th>
+      <th>Ausentes</th>
+      <th>Porcentaje de aprobados</th>
+    </tr>
+    <tr>
+      <td><%= @evaluation.title %></td>
+      <td><%= @evaluation.min_grade %></td>
+      <td><%= @evaluation.date %></td>
+      <% if @evaluation.set_grade %>
+        <td><%= @evaluation.approved_students%></td>
+        <td><%= @evaluation.disapproved_students%></td>
+        <td><%= @evaluation.absent_sudents %></td>
+        <td><%= @evaluation.percentage_of_approved %></td>
+      <%else%> 
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      <%end%>
+    </tr>
+  </table>
 
-<p>
-  <strong>Title:</strong>
-  <%= @evaluation.title %>
-</p>
-
-<p>
-  <strong>Min grade:</strong>
-  <%= @evaluation.min_grade %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @evaluation.date %>
-</p>
-
-<p>
-  <strong>Course:</strong>
-  <%= @evaluation.course.name %>
-  <%= @course.name %>
-  <%= @evaluation.grades.empty? %>
-</p>
+<br>
+<%= link_to 'Editar', edit_course_evaluation_path(@evaluation),class:"btn btn-primary btn-form" %> 
+<%= link_to 'Volver', course_evaluations_path,class:"btn btn-primary btn-form" %>
 
 
-<%= link_to 'Edit', edit_course_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', course_evaluations_path %>
-<%= link_to 'notas', course_evaluation_grades_path(@course,@evaluation) %>
-<%= link_to 'set_grade', set_grades_course_evaluation_path( @course, @evaluation) %>
 
-<input id="actualizarNotas" type="button" value="Actualizar notas" onclick="showmydiv()">
-<input id="ocultarNotas" type="button" value="Ocultar notas" onclick="hidemydiv()" style="display: none">
+<input class="btn btn-primary btn-form" id="actualizarNotas" type="button" value="Ver/Actualizar notas" onclick="showmydiv()">
+<input  class="btn btn-primary btn-form" id="ocultarNotas" type="button" value="Ocultar notas" onclick="hidemydiv()" style="display: none">
 <div id="myBox" style="display:none">
 <% if !@evaluation.grades.empty? %>
-<%= render 'set_grades', evaluation: @evaluation %>
+<div class="container">
+  <%= render 'set_grades', evaluation: @evaluation %>
+</div>
 <%end%>
 </div>

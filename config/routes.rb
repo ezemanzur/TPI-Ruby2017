@@ -2,12 +2,12 @@ Rails.application.routes.draw do
  
   
   resources :courses do
-  	resources :students
+    member do
+        get 'result'
+    end
+  	resources :students 
   	resources :evaluations do  
-  		resources :grades
-      member do
-        get 'set_grades'
-      end
+  		resources :grades, :only =>[:update]
   	end
   end
   get 'home/index'

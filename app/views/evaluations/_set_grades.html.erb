@@ -1,10 +1,11 @@
 <%= form_for [@course,@evaluation] do |f| %>
   <h3 style="color: white; text-align: center">Grades</h3>
-  <table  class="table table-bordered table-light gradesTable offset-md-3">
+  <table  class="table table-bordered table-light gradesTable table-striped">
     <tr>
-      <th class="col-md-2">Student</th>
-      <th class="col-md-2">Dni</th>
-      <th class="col-md-2">Grade</th>
+      <th >Nombre</th>
+      <th >Dni</th>
+      <th>Legajo</th>
+      <th >Nota</th>
     </tr>
     <%= f.fields_for :grades do |grades_form| %>
     <tr>
@@ -14,14 +15,23 @@
        <td >      
         <%= grades_form.object.student.dni %>
       </td>
+      <td >      
+        <%= grades_form.object.student.number %>
+      </td>
       <td>
+        <% if @evaluation.set_grade %>
+           
+            <%= grades_form.text_field :grade, placeholder: "Ausente"  %>
+          
+        <%else%>
           <%= grades_form.text_field :grade  %>
+        <% end %>
       </td>
     </tr>
     <% end %>
 
   </table>
   <div class="action offset-md-5">
-  <%= f.submit value:"Update grades" ,class:"btn btn-danger" %>
+  <%= f.submit "Actualizar" ,class:"btn btn-primary btn-form" %>
   </div>
 <% end %>

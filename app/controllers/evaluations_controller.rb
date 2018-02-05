@@ -46,7 +46,8 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
-      if @evaluation.update_attributes(evaluation_params)
+      @evaluation.set_grade=true
+      if @evaluation.update(evaluation_params)
         format.html { redirect_to course_evaluation_path(@course,@evaluation), notice: 'La evaluación fue actualizada con éxito.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else

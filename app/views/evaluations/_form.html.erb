@@ -1,26 +1,33 @@
 <%= form_with(model: [ @course, evaluation ], local: true) do |form| %>
- 
-  <div class="field">
+ <% if evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :evaluation_title %>
+    <%= form.text_field :title, id: :evaluation_title, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :min_grade %>
-    <%= form.text_field :min_grade, id: :evaluation_min_grade %>
+    <%= form.text_field :min_grade, id: :evaluation_min_grade, :class => "form-control" %>
   </div>
 
   <div class="field form-group">
     <%= form.label :date %>
-    <%= form.date_select :date, id: :evaluation_date %>
+    <%= form.date_select :date, id: :evaluation_date, :class => "form-control" %>
   </div>
 
-  <div class="field form-group">
-    <%= form.label :course_id %>
-    <%= form.text_field :course_id, id: :evaluation_course_id %>
-  </div>
+ 
 
-  <div class="actions">
-    <%= form.submit  :class => "btn btn-default" %>
+  <div class="actions form-group">
+    <%= form.submit "Crear evaluación", :class => "btn btn-primary btn-form" %>
   </div>
 <% end %>

@@ -1,0 +1,39 @@
+<h1 class="title-courses">Resultados de las evaluaciones</h1>
+
+<table class="table table-bordered table-light gradesTable table-striped">
+	<tr>
+		<th>Estudiante</th>
+		<th>DNI</th>
+		<th>Legajo</th>
+		<% @course.evaluations.each do |e| %>
+			<th><%=e.title%></th>
+			<th colspan="1"></th>
+		<% end %>
+	</tr>
+	<% @course.students.each do |s| %>
+		<tr>
+			<td>
+				<%= s.name %>
+			</td>
+			<td>
+				<%= s.dni %>
+			</td>
+			<td>
+				<%= s.number %>
+			</td>
+			<% @course.evaluations.each do |e| %>
+				<% if e.result(s).nil? %>
+					<td>Ausente</td>
+				<%else%>
+					<td><%= e.result(s)%></td>
+				<% end %>
+				<% if e.approved(s)%>
+					<td style="background: green; color:white;">Aprobado</td>
+				<%else%>
+					<td style="background: red; color:white;">Desaprobado</td>
+				<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+<%= link_to 'Volver al curso', @course, :class => "btn btn-primary btn-form" %> 

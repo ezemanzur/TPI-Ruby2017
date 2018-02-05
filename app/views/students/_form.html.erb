@@ -11,28 +11,28 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :student_name %>
+    <%= form.text_field :name, id: :student_name, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :lastname %>
-    <%= form.text_field :lastname, id: :student_lastname %>
+    <%= form.text_field :lastname, id: :student_lastname, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :dni %>
-    <%= form.number_field :dni, id: :student_dni %>
+    <%= form.number_field :dni, id: :student_dni, :class => "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :number %>
-    <%= form.text_field :number, id: :student_number %>
+    <%= form.text_field :number, id: :student_number, :class => "form-control" %>
   </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit  :class => "btn btn-primary btn-form" %>
   </div>
 <% end %>
