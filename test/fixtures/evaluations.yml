@@ -11,3 +11,8 @@ two:
   min_grade: 1.5
   date: 2017-12-12
   course: two
+eva2:
+  title: Evaluation
+  min_grade: 1.5
+  date: 2017-12-12
+  course: one

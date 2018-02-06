@@ -1,5 +1,12 @@
 
 <div class="container  div-inline2">
+  <% if @evaluation.errors.any? %>
+    <ul>
+      <% @evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+  <% end %>
   <table class="table table-bordered table-light gradesTable table-striped">
     <tr>
       <th>Titulo</th>

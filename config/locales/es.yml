@@ -9,7 +9,25 @@ es:
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
     attributes:
       evaluation:
-        title: "Titulo"
+        title: "Título"
+        min_grade: "Nota mínima"
+        date: "Fecha"
+      course: 
+        year: "Año"
+        name: "Nombre"
+      student:
+        name: "Nombre"
+        lastname: "Apellido"
+        number: "Legajo"
+      user:
+        password: "Contraseña"
+      grade:
+        grade: "Nota"
+    models:
+      course: "Cursada"
+      evaluation: "Evaluación"
+      grade: "Nota"
+      student: "Estudiante"
   date:
     abbr_day_names:
     - dom

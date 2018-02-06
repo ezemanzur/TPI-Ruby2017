@@ -7,3 +7,6 @@ one:
 two:
   year: 1
   name: MyString
+curso_sin_evaluaciones:
+  year: 1995
+  name: Prueba

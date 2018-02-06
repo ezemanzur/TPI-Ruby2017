@@ -10,6 +10,6 @@ one:
 two:
   name: MyString
   lastname: MyString
-  dni: 1
+  dni: 3
   number: MyString
-  course: two
+  course: one

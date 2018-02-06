@@ -24,16 +24,54 @@
 			<% @course.evaluations.each do |e| %>
 				<% if e.result(s).nil? %>
 					<td>Ausente</td>
+					<td style="background: blue; color:white;">Ausente</td>
 				<%else%>
 					<td><%= e.result(s)%></td>
+					<% if e.approved(s)%>
+						<td style="background: green; color:white;">Aprobado</td>
+					<%else%>
+						<td style="background: red; color:white;">Desaprobado</td>
+					<% end %>
 				<% end %>
-				<% if e.approved(s)%>
-					<td style="background: green; color:white;">Aprobado</td>
-				<%else%>
-					<td style="background: red; color:white;">Desaprobado</td>
-				<% end %>
+				
 			<% end %>
 		</tr>
-	<% end %>
+		<% end %>
+		<tr>
+			<th style="text-decoration: underline;">Resumen de las evaluaciones</th>
+			<td colspan="2"></td>
+			<% @course.evaluations.count.times do  %>
+				<td colspan="2"></td>
+			<% end %>
+		</tr>
+		<tr>
+			<th>Aprobados</th>
+			<td colspan="2"></td>
+			<% @course.evaluations.each do |e| %>
+				<td colspan="2" class="td-courses"><%= e.approved_students%></td>
+			<% end %>
+		</tr>
+		<tr>
+			<th>Desaprobados</th>
+			<td colspan="2"></td>
+			<% @course.evaluations.each do |e| %>
+				<td colspan="2" class="td-courses"><%= e.disapproved_students%></td>
+			<% end %>
+		</tr>
+		<tr>
+			<th>Ausentes</th>
+			<td colspan="2"></td>
+			<% @course.evaluations.each do |e| %>
+				<td colspan="2" class="td-courses"><%= e.absent_sudents%></td>
+			<% end %>
+		</tr>
+		<tr>
+			<th>Porcentaje de aprobados</th>
+			<td colspan="2"></td>
+			<% @course.evaluations.each do |e| %>
+				<td colspan="2" class="td-courses"><%= e.percentage_of_approved%>%</td>
+			<% end %>
+		</tr>
+	
 </table>
 <%= link_to 'Volver al curso', @course, :class => "btn btn-primary btn-form" %> 

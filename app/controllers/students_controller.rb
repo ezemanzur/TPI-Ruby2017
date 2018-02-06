@@ -57,7 +57,7 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Estudiante eliminado con éxito.' }
+      format.html { redirect_to course_students_url(@course), notice: 'Estudiante eliminado con éxito.' }
       format.json { head :no_content }
     end
   end

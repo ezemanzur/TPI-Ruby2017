@@ -2,7 +2,9 @@ require 'test_helper'
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    sign_in users(:one)
     @course = courses(:one)
+    @course2= courses(:curso_sin_evaluaciones)
   end
 
   test "should get index" do
@@ -17,7 +19,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create course" do
     assert_difference('Course.count') do
-      post courses_url, params: { course: { name: @course.name, year: @course.year } }
+      post courses_url, params: { course: { name: @course.name, year: @course.year + 1 } }
     end
 
     assert_redirected_to course_url(Course.last)
@@ -34,13 +36,13 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update course" do
-    patch course_url(@course), params: { course: { name: @course.name, year: @course.year } }
+    patch course_url(@course), params: { course: { name: @course.name, year: @course.year + 1 } }
     assert_redirected_to course_url(@course)
   end
 
   test "should destroy course" do
     assert_difference('Course.count', -1) do
-      delete course_url(@course)
+      delete course_url(@course2)
     end
 
     assert_redirected_to courses_url

@@ -4,45 +4,24 @@ class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
   # GET /grades
   # GET /grades.json
-  def index
-    @grades = @evaluation.grades
-  end
-
+ 
   # GET /grades/1
   # GET /grades/1.json
-  def show
-  end
-
+  
   # GET /grades/new
-  def new
-    @grade = @evaluation.grades.new
-  end
 
   # GET /grades/1/edit
-  def edit
-  end
-
+ 
   # POST /grades
   # POST /grades.json
-  def create
-    @grade = @evaluation.grades.new(grade_params)
-    respond_to do |format|
-      if @grade.save
-        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'La nota ha sido cargada con éxito.' }
-        format.json { render :show, status: :created, location: [@evaluation.course,@evaluation,@grade] }
-      else
-        format.html { render :new }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+ 
 
   # PATCH/PUT /grades/1
   # PATCH/PUT /grades/1.json
   def update
     respond_to do |format|
       if @grade.update(grade_params)
-        format.html { redirect_to course_evalution(@evaluation.course,@evaluation,@grade), notice: 'La nota ha sido actualizada con éxito.' }
+        format.html { redirect_to course_evaluation_grade_url(@evaluation.course,@evaluation,@grade), notice: 'La nota ha sido actualizada con éxito.' }
         format.json { render :show, status: :ok, location: [@evaluation.course,@evaluation,@grade]}
       else
         format.html { render :edit }
@@ -51,15 +30,7 @@ class GradesController < ApplicationController
     end
   end
 
-  # DELETE /grades/1
-  # DELETE /grades/1.json
-  def destroy
-    @grade.destroy
-    respond_to do |format|
-      format.html { redirect_to [@evaluation.course,@evaluation], notice: 'La nota ha sido eliminada con éxito.' }
-      format.json { head :no_content }
-    end
-  end
+ 
 
   private
     # Use callbacks to share common setup or constraints between actions.
