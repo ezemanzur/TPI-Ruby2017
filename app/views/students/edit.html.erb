@@ -2,5 +2,6 @@
 
 <%= render 'form', student: @student %>
 
-<%= link_to 'Show', course_student_path(@course,@student) %> |
-<%= link_to 'Back', course_students_path(@course) %>
+<%= link_to 'Ver', course_student_path(@course,@student), :class => "btn btn-primary btn-form" %> 
+<%= link_to 'Volver', course_students_path(@course), :class => "btn btn-primary btn-form" %>
+<%= link_to 'Ir al curso', @course, :class => "btn btn-primary btn-form" %>

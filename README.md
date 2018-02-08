@@ -72,7 +72,7 @@ Puedes correr los Unit Test para esta aplicación.
 ```bash
   $ rails test test/controllers/evaluations_controller_test.rb
  ```
-* Controller Students
+* Controller Estudiantes	
 ```bash
   $ rails test test/controllers/students_controller_test.rb
  ```
