@@ -20,7 +20,8 @@ class Evaluation < ApplicationRecord
 		((self.approved_students / (grades.count - self.absent_sudents).to_f) * 100).to_f.round(2)
 	end
 	def result student
-		self.grades.where("student_id = #{student.id}" ).first.grade
+		res=self.grades.where("student_id = #{student.id}" )
+		(res.empty?)? nil : res.first.grade
 	end
 	def approved student
 		if result(student).nil?
