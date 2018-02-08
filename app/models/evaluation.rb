@@ -6,7 +6,15 @@ class Evaluation < ApplicationRecord
   validates :min_grade , presence: true,  numericality: { greater_than: 0}
   validates :title , presence: true, uniqueness: {scope: :course , message:"La evaliacion debe ser única por curso"}
   validates :date, presence: true
+  validate :validates_date
 
+  	def validates_date
+  		if self.date.present?
+  			if self.date.year < self.course.year then
+  				errors.add(:date,"La fecha de la evaliación debe ser igual o postarior a la del curso")
+  			end
+  		end
+  	end
 	def approved_students
 		 self.grades.where("grade >= #{min_grade}" ).count
 	end

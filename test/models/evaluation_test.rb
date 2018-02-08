@@ -25,6 +25,7 @@ class EvaluationTest < ActiveSupport::TestCase
   
 	test "No se puede guardar una evaluación con atributos nulos" do
 		e=Evaluation.new
+		e.course=@course
 		refute e.save
 	end
 	test "Alumno aprobado" do

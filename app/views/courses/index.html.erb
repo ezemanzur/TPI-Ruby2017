@@ -2,6 +2,7 @@
 
 <h1 class="title-courses">Cursadas</h1>
 <div class="container">
+
   <table class="table table-bordered table-light gradesTable table-striped ">
     
       <tr>
@@ -18,7 +19,7 @@
             <%= content_tag :i,"", :class => "fa fa-edit" %>
             <% end %>
           </td>
-          <td class="col-center"><%= link_to  course, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <td class="col-center"><%= link_to  course, method: :delete, data: { confirm: 'Estas seguro?' } do %>
             <%= content_tag :i,"", :class => "fa fa-trash" %>
             <% end %>
           </td>

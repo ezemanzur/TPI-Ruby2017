@@ -10,6 +10,7 @@
   <body>
     <head>
       <nav class="col-md-12 nav-singout navbar-inverse" >
+           <%= link_to "Inicio",  "/" %> |
 
          <% if user_signed_in? %>
           <%= link_to 'Cerrar Sesion', destroy_user_session_path, :method => :delete %>
