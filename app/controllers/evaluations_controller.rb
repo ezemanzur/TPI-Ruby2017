@@ -46,13 +46,21 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
-      @evaluation.set_grade=true
+      
       if @evaluation.update(evaluation_params)
+        if params[:evaluation][:grades_attributes].present?
+          @evaluation.set_grade=true
+        end
         format.html { redirect_to course_evaluation_path(@course,@evaluation), notice: 'La evaluación fue actualizada con éxito.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
-        format.html { render :edit }
-        format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+         if params[:evaluation][:grades_attributes].present?
+          format.html { render :show }
+          format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+        else
+          format.html { render :edit }
+          format.json { render json: @evaluation.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

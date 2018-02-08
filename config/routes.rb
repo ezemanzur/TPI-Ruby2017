@@ -6,9 +6,7 @@ Rails.application.routes.draw do
         get 'result'
     end
   	resources :students 
-  	resources :evaluations do  
-  		resources :grades, :only =>[:update]
-  	end
+  	resources :evaluations 
   end
   get 'home/index'
   root 'courses#index'

@@ -13,3 +13,15 @@ two:
   dni: 3
   number: MyString
   course: one
+three:
+  name: MyString
+  lastname: MyString
+  dni: 4
+  number: MyString
+  course: one
+four:
+  name: MyString
+  lastname: MyString
+  dni: 5
+  number: MyString
+  course: one
