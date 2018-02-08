@@ -1,24 +1,78 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ Es una aplicación desarrollada con Ruby on Rails  como trabajo integrador de la materia Taller de Tecnologías de producción de Software de la Universidad Nacional de La Plata.
+ 
+## Requerimientos
 
-Things you may want to cover:
+* Ruby version:  2.4.1
+* Bundler 
+* Rails 5.0 
+## ¿Cómo instalo TODO-Rails?
+Una vez instalado Ruby,
+### Descargar código fuente:
+* [Repositorio Github] (https://github.com/ezemanzur/TPI-Ruby2017)
+* O desde la consola:
 
-* Ruby version
+```bash
+  $ git clone https://github.com/ezemanzur/TPI-Ruby2017
+  ```
 
-* System dependencies
+### Gemas:
+```bash
+	$ bundle install
+```
+	  * Para este último comando, se debe estar ubicado sobre el directorio donde se copió el repositorio.
 
-* Configuration
+### Preparar base de datos:
+```bash
+	$ rails db:create
+	$ rails db:migrate
+```
+	 * La aplicación provee de datos pre-cargados (seeds) para poder probar el software sin necesidad de tener que cargar numerosas entradas.
+```bash
+	$ rails db:seed
+```
+### Ejecutar web server
+*Para iniciar el web server:
+```bash
+  $ rails s
+```
 
-* Database creation
+### ¡Listo!
+Para acceder:
+[http://localhost:3000](http://localhost:3000)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Unit Test
+Puedes correr los Unit Test para esta aplicación.
+* Todos los test:
+```bash
+  $ rails test test/
+ ```
+* Para el modelo de Cursos:
+```bash
+  $ rails test test/models/course_test.rb
+ ```
+* Para el modelo de Evaluaciones:
+```bash
+  $ rails test test/models/evaluation_test.rb
+ ```
+* Para el modelo de Estudiantes:
+```bash
+  $ rails test test/models/student_test.rb
+ ```
+* Para el modelo de Notas:
+```bash
+  $ rails test test/models/grade_test.rb
+ ```
+* Controller Cursos
+```bash
+  $ rails test test/controllers/coursescontroller_test.rb
+ ```
+* Controller Evaluaciones
+```bash
+  $ rails test test/controllers/evaluations_controller_test.rb
+ ```
+* Controller Students
+```bash
+  $ rails test test/controllers/students_controller_test.rb
+ ```
