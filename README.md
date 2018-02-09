@@ -76,3 +76,5 @@ Puedes correr los Unit Test para esta aplicación.
 ```bash
   $ rails test test/controllers/students_controller_test.rb
  ```
+* Para iniciar sesion en la app (Usuario pre-cargado)
+	email: admin@admin.com password: '1234567'
