@@ -6,9 +6,8 @@
 
 * Ruby version:  2.4.1
 * Bundler 
-* Rails 5.0 
-## ¿Cómo instalo TODO-Rails?
-Una vez instalado Ruby,
+* Rails 5.1.4 
+## ¿Cómo instalo la aplicación?
 ### Descargar código fuente:
 * [Repositorio Github] (https://github.com/ezemanzur/TPI-Ruby2017)
 * O desde la consola:
